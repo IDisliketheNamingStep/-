@@ -19,3 +19,28 @@
 .footer {
     padding: 20px;
 }
+.actionAndShowType input {
+    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 17px;
+}
+.actionAndShowType label {
+    margin-left: 2px;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 17px;
+    color: #5C5C5C;
+}
+.actionChoice, .showTpeChoice {
+    display: inline-block;
+}
+select {
+    font-size: 20px;
+    color: orangered;
+    border: 0;
+    outline: none;
+}
+.rankSection {
+    margin: 0 0 10px 8px;
+}

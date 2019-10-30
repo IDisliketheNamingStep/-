@@ -4,7 +4,6 @@
     height: 190px;
     margin: 0 20px;
     border-bottom: 1px dashed #DDDDDD;
-    /*background-color: #258DCD;*/
 }
 .rankShowContent {
     width: 405px;
@@ -17,18 +16,25 @@
     position: absolute;
     clip: rect(0px 100px 128px 0px);
 }
+.textOnlyRankContainer {
+    position: relative;
+    height: 50px;
+}
+.textOnlyRankContent {
+    margin: 0 30px;
+}
 .descArea {
     margin-left: 30%;
     float: left;
 }
-.descArea p {
-    color: #5C5C5C;
-    font-size: 13px;
-    width: 250px;
-    line-height: 30px;
+.textOnlyRankdescArea {
+    width: 100%;
+    margin-left: 0;
 }
-.filmTitle span {
+
+.filmTitle span:first-child {
     color: #3377AA;
+    margin-right: 5px;
 }
 .playable:after {
     content: ' [可播放]';
@@ -57,4 +63,51 @@
     color: #5C5C5C;
     font-size: 13px;
     line-height: 15px;
+}
+.descArea p {
+    color: #5C5C5C;
+    width: 250px;
+    line-height: 30px;
+}
+.descArea p span {
+    font-size: 13px;
+    line-height: 30px;
+}
+p.filmTitle {
+    width: 100%;
+}
+.textOnlyRankdescArea p.filmTitle span {
+    line-height: 50px;
+}
+.hoverRankContainer {
+    border: 0;
+    background-color: white;
+    z-index: 3000;
+    height: 100px;
+    position: absolute;
+    left: -20px;
+    display: none;
+}
+.hoverRankContainer .descArea {
+    margin-left: 18%;
+}
+div.hoverRankContent {
+    margin-top: 12px;
+}
+div.hoverRankContent div.descArea p, div.hoverRankContent div.descArea span {
+    line-height: 18px;
+    margin-bottom: 0;
+}
+div.hoverRankContent div.descArea .yearAndTags {
+    margin-bottom: 3px;
+}
+div.hoverRankContent img {
+    display: block;
+    position: absolute;
+    clip: rect(0px 60px 74px 0px);
+    height: 88px;
+}
+
+.textOnlyRankContainer:hover div.hoverRankContainer {
+    display: block;
 }

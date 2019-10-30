@@ -2,6 +2,7 @@ const proxy = require('http-proxy-middleware');
 
 module.exports = function(app) {
     app.use(proxy('/api', { target: 'https://movie.douban.com/' ,changeOrigin: true, pathRewrite: {'^/api': ''}, secure: false}));
+    app.use(proxy('/mpi', { target: 'https://m.douban.com/' ,changeOrigin: true, pathRewrite: {'^/mpi': ''}, secure: false}));
     // app.use(proxy('/test', { target: 'http://localhost:3000' }));
     // 省略...
 };
