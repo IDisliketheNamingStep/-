@@ -1,0 +1,21 @@
+.homePageContainer {
+    width: 100%;
+}
+.homeNavContainer {
+    background-color: #F3F5F7;
+    margin: auto;
+}
+.homeContentContainer {
+    width: 1040px;
+    margin: auto;
+}
+.homeContIner {
+    margin-right: 40px;
+}
+.rankShowArea {
+    display: inline-block;
+    width: 100%;
+}
+.footer {
+    padding: 20px;
+}

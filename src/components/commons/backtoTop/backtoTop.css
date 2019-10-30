@@ -1,0 +1,14 @@
+.backtoTopContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 400px;
+}
+.backtoTopContent {
+    display: none;
+    width: 50px;
+    height: 70px;
+    background: url("../../../assets/images/top250_processbar_backtotop.png") 0px 0px no-repeat;
+}
+div.topShow {
+    display: block;
+}

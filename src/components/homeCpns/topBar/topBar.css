@@ -1,0 +1,13 @@
+.topBarContainer {
+    width: 100%;
+    display: inline-block;
+    background-color: #545652;
+}
+.topBarContent {
+    padding: 0 10px;
+}
+.topBarContent li, .topBarContent span {
+    line-height: 28px;
+    padding: 0 12px;
+    color: #D5D5D5;
+}

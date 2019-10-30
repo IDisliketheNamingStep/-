@@ -1,0 +1,53 @@
+.movieNavContainer {
+    position: relative;
+    width: 1040px;
+    margin: auto;
+}
+.navFirstLine a {
+    line-height: 56px;
+    font-size: 28px;
+    color: #258DCD;
+    font-weight: bold;
+}
+.searchBar {
+    margin: 13px -3px 0 45px;
+    width: 470px;
+    height: 34px;
+    background: url("../../../assets/images/nav_mv_bg.png") 0px 0px no-repeat;
+}
+.searchBar input {
+    font-size: 14px;
+    border: 0;
+    outline: none;
+    width: 96%;
+    height: 31px;
+}
+.searchButton {
+    margin-top: 13px;
+    width: 37px;
+    height: 35px;
+    background: url("../../../assets/images/nav_mv_bg.png") 0px -40px no-repeat;
+}
+.secLineContainer {
+    margin-top: 20px;
+    width: 100%;
+    display: inline-block;
+}
+.secLineContainer li {
+    margin-right: 25px;
+    margin-bottom: 15px;
+    color: #2277AA;
+    font-size: 14px;
+    line-height: 16px;
+}
+.movieAnnual {
+    position: absolute;
+    width: 186px;
+    height: 96px;
+    top: 10px;
+    left: 50%;
+    margin-left: 200px;
+    background: url("../../../assets/images/annual_2018.png") 0px 0px no-repeat;
+    background-size: contain;
+
+}
