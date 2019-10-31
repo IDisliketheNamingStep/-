@@ -7,11 +7,13 @@ class rankShow extends Component {
     }
 
     render() {
-        let {showImgText, showUnWatchedOnly, showPlayableOnly, actors, cover_url, is_playable, is_watched, score, title, types, release_date, regions, rankPos, vote_count} = this.props
+        let {rating, url, showImgText, showUnWatchedOnly, showPlayableOnly, actors, cover_url, is_playable, is_watched, score, title, types, release_date, regions, rankPos, vote_count} = this.props
         // 数据未请求回来前返回空
+        // console.log(rating[1],'444')
         if(!release_date) {
             return <div/>
         }
+        let starCSS = 'stars' + rating[1]
         let year = release_date.slice(0, 4)
 
         // 判断是否只显示可播放的内容============
@@ -39,15 +41,17 @@ class rankShow extends Component {
                     {/*===========================================================================*/}
                     <div className="hoverRankContainer rankShowContainer clearfix fl">
                         <div className="hoverRankContent rankShowContent">
-                            <img src={cover_url} alt=""/>
+                            <a href={url} rel="noopener noreferrer" target='_blank'>
+                                <img src={cover_url} alt=""/>
+                            </a>
                             <div className="descArea">
                                 <p className="filmTitle">
-                                    <span className={is_playable ?'playable' : null}>{title}</span>
+                                    <span className={is_playable ?'playable' : null}><a rel="noopener noreferrer" href={url} target='_blank'>{title}</a></span>
                                     <span className='fr'>{rankPos + 1}</span>
                                 </p>
                                 <p className="actors textOverflow">{actors.join(' / ')}</p>
                                 <p className="yearAndTags textOverflow">{year} / {regions.join(' / ')} / {types.join(' / ')}</p>
-                                <span className="stars" >&nbsp;</span>
+                                <span className={rating?  'stars ' + starCSS :'stars'} >&nbsp;</span>
                                 <span className="score">{score}</span>
                                 <span className="comsNum">{vote_count}评价</span>
                             </div>
@@ -59,15 +63,17 @@ class rankShow extends Component {
         return (
             <div className="rankShowContainer clearfix fl">
                 <div className="rankShowContent">
-                    <img src={cover_url} alt=""/>
+                    <a rel="noopener noreferrer" href={url} target='_blank'>
+                        <img src={cover_url} alt=""/>
+                    </a>
                     <div className="descArea">
                         <p className="filmTitle">
-                            <span className={is_playable ?'playable' : null}>{title}</span>
+                            <span className={is_playable ?'playable' : null}><a rel="noopener noreferrer" href={url} target='_blank'>{title}</a></span>
                             <span className='fr'>{rankPos + 1}</span>
                         </p>
                         <p className="actors textOverflow">{actors.join(' / ')}</p>
                         <p className="yearAndTags textOverflow">{year} / {regions.join(' / ')} / {types.join(' / ')}</p>
-                        <span className="stars" >&nbsp;</span>
+                        <span className={rating?  'stars ' + starCSS :'stars'} >&nbsp;</span>
                         <span className="score">{score}</span>
                         <span className="comsNum">{vote_count}评价</span>
                     </div>

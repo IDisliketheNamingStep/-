@@ -4,14 +4,12 @@ import axios from 'axios'
 
 import BacktoTop from '../../components/commons/backtoTop/backtoTop'
 import './homePage.css'
-import TopBar from '../../components/homeCpns/topBar/topBar'
-import MovieNav from '../../components/homeCpns/movieNav/movieNav'
+import TopBar from '../../components/commons/topBar/topBar'
+import MovieNav from '../../components/commons/movieNav/movieNav'
 import TitleAndTypeChange from '../../components/homeCpns/titleAndTypeChange/titleAndTypeChange'
 import RankShow from '../../components/homeCpns/rankShow/rankShow'
 
-
 axios.defaults.withCredentials=true;
-
 
 class homePage extends Component {
     constructor(props) {
@@ -43,7 +41,9 @@ class homePage extends Component {
             // 排名区间
             // interval_id: '100%3A90',
             rankSection: 0,
-            interval_id: ['100%3A90', '90%3A80', '80%3A70', '70%3A60', '60%3A50', '50%3A40', '40%3A30', '30%3A20', '20%3A10', '10%3A0'],
+            //        let rankArr = ['95%', '90%', '85%', '80%', '75%', '70%', '65%', '60%', '55%', '50%', '45%', '40%', '35%', '30%', '25%', '20%', '15%', '10%', '5%', ]
+            interval_id: ['100%3A90', '95%3A85', '90%3A80', '85%3A75', '80%3A70', '75%3A65', '70%3A60', '65%3A55', '60%3A50', '55%3A45', '50%3A40', '45%3A35',
+                '40%3A30', '35%3A25', '30%3A20', '25%3A15', '20%3A10', '15%3A5', '10%3A0'],
             action: '',
             // 获取信息的起始位置，每次自增20
             start: 0,
@@ -63,7 +63,7 @@ class homePage extends Component {
         await this.setState({rankSection, rankList: [], start: 0})
         this.getAbstractInfo()
         this.getMovieList()
-        console.log(rankSection, this.state.rankSection,this.state.rankList, '2333333')
+        // console.log(rankSection, this.state.rankSection,this.state.rankList, '2333333')
     }
     // 用户选择了其他类型的排行榜
     async handleTypeChange(item) {
@@ -104,7 +104,6 @@ class homePage extends Component {
     }
 
     // 获取概述信息函数https://movie.douban.com/j/chart/top_list_count?type=11&interval_id=100%3A90
-    //{"playable_count":355,"total":655,"unwatched_count":655}
     async getAbstractInfo() {
         let {type, interval_id, rankSection} = this.state
         interval_id = interval_id[rankSection]
@@ -113,16 +112,6 @@ class homePage extends Component {
         res = res.data
         let {playable_count, total, unwatched_count} = res
         this.setState({playable_count, total, unwatched_count})
-        // console.log(playable_count, total, unwatched_count, '211111')
-    }
-
-    //https://m.douban.com/rexxar/api/v2/gallery/subject_feed?start=0&count=4&subject_id=1292052&ck=null
-    async getTestInfo() {
-        let res = await axios.get('/mpi/rexxar/api/v2/gallery/subject_feed?start=0&count=4&subject_id=1292052&ck=null')
-        res = res.data
-        console.log(res, '23333335')
-        // let {playable_count, total, unwatched_count} = res
-        // this.setState({playable_count, total, unwatched_count})
         // console.log(playable_count, total, unwatched_count, '211111')
     }
     // 监听页面滑动到底部触发获取下一页信息
@@ -142,7 +131,6 @@ class homePage extends Component {
     }
 
     componentDidMount() {
-        this.getTestInfo()
         // 挂载滚动监听
         window.addEventListener('scroll', this.bindScroll)
         // 获取第一次剧情片信息
@@ -158,7 +146,7 @@ class homePage extends Component {
 
     render() {
         let {playable_count, unwatched_count, catName} =this.state
-        let rankArr = ['95%', '85%', '75%', '65%', '55%', '45%', '35%', '25%', '15%', '5%', ]
+        let rankArr = ['95%', '90%', '85%', '80%', '75%', '70%', '65%', '60%', '55%', '50%', '45%', '40%', '35%', '30%', '25%', '20%', '15%', '10%', '5%', ]
         return (
             <div className="homePageContainer">
                 <BacktoTop />

@@ -16,6 +16,8 @@
     background: url("../../../assets/images/nav_mv_bg.png") 0px 0px no-repeat;
 }
 .searchBar input {
+    text-indent: 8px;
+    border-radius: 4px;
     font-size: 14px;
     border: 0;
     outline: none;

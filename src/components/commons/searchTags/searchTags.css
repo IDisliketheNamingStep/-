@@ -1,0 +1,16 @@
+.searchTagsContainer {
+    display: inline-block;
+    width: 100%;
+}
+.searchTagsContent li{
+    margin: 0 3px 5px 0;
+    padding: 1px 10px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666666;
+}
+li.currentSelectTag {
+    border-radius: 2px;
+    background-color: #4B8CCB;
+    color: white;
+}

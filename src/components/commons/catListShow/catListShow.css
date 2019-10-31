@@ -1,0 +1,54 @@
+.catListShowContainer {
+    width: 100%;
+}
+.catListShowContent ul {
+    margin-top: 15px;
+    display: inline-block;
+}
+.catListShowContent li {
+    margin-top: 5px;
+    color: #333333;
+    padding: 0px 10px;
+    font-size: 14px;
+    line-height: 24px;
+}
+li.active {
+    padding: 0 10px;
+    opacity: 80%;
+    border-radius: 2px;
+    background-color: rgba(37,141,205,0.8);
+    color: white;
+}
+.sortTypeAndShowChoice {
+    margin: 20px 0 40px;
+}
+.sortType li {
+    float: left;
+    color: #999999;
+    border-top: 1px solid #DFDFDF;
+    border-bottom: 1px solid #DFDFDF;
+    padding: 7.5px 15px;
+}
+.sortType li:first-child {
+    border-left: 1px solid #DFDFDF;
+}
+.sortType li:last-child {
+    border-right: 1px solid #DFDFDF;
+}
+.sortType li.sortActive {
+    background-color: rgb(244,249,252);
+    color: rgb(55,150,209);
+    border-color: rgb(55,150,209);
+}
+div.selectScore {
+    margin-left: 325px;
+}
+.showChoice input, .showChoice label {
+    line-height: 36px;
+    margin: 0 3px;
+    vertical-align: middle;
+}
+.sortTypeAndShowChoice select {
+    margin-top: 10px;
+    font-size: 14px;
+}

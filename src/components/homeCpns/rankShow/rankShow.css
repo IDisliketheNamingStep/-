@@ -32,7 +32,7 @@
     margin-left: 0;
 }
 
-.filmTitle span:first-child {
+.filmTitle span:first-child a {
     color: #3377AA;
     margin-right: 5px;
 }
@@ -50,8 +50,38 @@
     line-height: 17px;
     display: inline-block;
     width: 80px;
-    height: 16px;
+    height: 15px;
     background: url("../../../assets/images/ic_rating_m.png") 0px 0px no-repeat;
+}
+.stars45 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -15px no-repeat;
+}
+.stars40 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -30px no-repeat;
+}
+.stars35 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -45px no-repeat;
+}
+.stars30 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -60px no-repeat;
+}
+.stars25 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -75px no-repeat;
+}
+.stars20 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -90px no-repeat;
+}
+.stars15 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -105px no-repeat;
+}
+.stars10 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -120px no-repeat;
+}
+.stars5 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -135px no-repeat;
+}
+.stars0 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -150px no-repeat;
 }
 .score {
     color: #E09015;

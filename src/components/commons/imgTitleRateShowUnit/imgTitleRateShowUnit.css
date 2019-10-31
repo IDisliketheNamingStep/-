@@ -1,0 +1,146 @@
+.imgTitleRateShowUnitContainer {
+    position: relative;
+    margin: 0 0px 10px 0;
+    padding-right: 25px;
+}
+.imgTitleRateShowUnitContent img {
+    width: 115px;
+    height: 170px;
+    display: inline-block;
+}
+.imgTitleRateShowUnitContent P {
+    text-align: center;
+    height: 35px;
+    width: 115px;
+}
+.imgTitleRateShowUnitContent P span {
+    font-size: 13px;
+    line-height: 16px;
+    color: #3377AA;
+}
+.imgTitleRateShowUnitContent P span:last-child {
+    color: #E09015;
+    padding-left: 6px;
+}
+.imgTitleRateShowUnitContent p img {
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+}
+.imgTitleRateShowUnitContent p img.hide {
+    display: none;
+}
+/*hover弹出框*/
+.detailPopBox {
+    z-index: 999;
+    width: 337px;
+    position: absolute;
+    left: 140px;
+    top: 0;
+    border: 1px solid #999999;
+    background-color: white;
+    display: none;
+}
+div.imgTitleRateShowUnitContainer:hover div.detailPopBox {
+    display: block;
+}
+.detailPopContent {
+    margin: 20px 15px 0 30px;
+}
+.movieTitle {
+    margin-bottom: 5px;
+    color: #3377AA;
+    font-size: 18px;
+    line-height: 25px;
+}
+/*=======================星星动态变化============================*/
+.stars {
+    line-height: 17px;
+    display: inline-block;
+    width: 80px;
+    height: 15px;
+    background: url("../../../assets/images/ic_rating_m.png") 0px 0px no-repeat;
+}
+.stars45 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -15px no-repeat;
+}
+.stars40 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -30px no-repeat;
+}
+.stars35 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -45px no-repeat;
+}
+.stars30 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -60px no-repeat;
+}
+.stars25 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -75px no-repeat;
+}
+.stars20 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -90px no-repeat;
+}
+.stars15 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -105px no-repeat;
+}
+.stars10 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -120px no-repeat;
+}
+.stars5 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -135px no-repeat;
+}
+.stars0 {
+    background: url("../../../assets/images/ic_rating_m.png") 0px -150px no-repeat;
+}
+.score {
+    color: #E09015;
+    font-size: 16px;
+    line-height: 17px;
+    margin-right: 12px;
+}
+.detailPopContent ul {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.detailPopContent li {
+    float: left;
+    background-color: #F5F5F5;
+    color: #666666;
+    margin: 0 8px 8px 0;
+    padding: 2px 10px 1px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+.detailPopContent li:first-child {
+    background-color: #66C056;
+    color: white;
+    display: none;
+}
+.detailPopContent li.show {
+    display: block;
+}
+.wantWatch, .watched {
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    border: 1px solid #bbb;
+    padding: 2px 14px 1px;
+    border-radius: 2px;
+    color: #111;
+}
+.userComment {
+    line-height: 20px;
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding: 20px 25px;
+    color: #666;
+    margin: 0;
+    font-size: 13px;
+    word-wrap: break-word;
+}
+.userNickname {
+    font-size: 13px;
+    color: #aaa;
+}

@@ -23,7 +23,7 @@
     margin-left: 8px;
     display: inline-block;
     vertical-align: middle;
-    line-height: 17px;
+    /*line-height: 17px;*/
 }
 .actionAndShowType label {
     margin-left: 2px;
