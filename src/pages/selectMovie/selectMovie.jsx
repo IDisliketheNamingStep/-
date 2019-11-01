@@ -162,7 +162,6 @@ class selectMovie extends Component {
             await this.getMoviesListInfo()
             this.getRecommend_groupsInfo()
         }
-        // console.log(index, '44444444444444444444444')
     }
 
     componentDidMount() {
@@ -204,9 +203,7 @@ class selectMovie extends Component {
                         {/*展示区容器*/}
                         <div className="showMovieUnitBox">
                             {
-                                this.state.searchSubjects.map((item, index)=> <span onMouseOver={()=>this.gethoverMovieInfo(item.id)} key={index} target='_blank' rel='noopener noreferrer' href={item.url}><ImgTitleRateShowUnit movieDetailList={this.state.movieDetailList[item.id]} {...item}/></span>)
-                                // this.state.searchSubjects.map((item, index)=> <a onMouseOver={()=>this.gethoverMovieInfo(item.id)} key={index} target='_blank' rel='noopener noreferrer' href={item.url}><ImgTitleRateShowUnit movieDetailList={this.state.movieDetailList[item.id]} {...item}/></a>)
-                                // this.state.searchSubjects.map((item, index)=><ImgTitleRateShowUnit onMouseOver={()=>this.gethoverMovieInfo(item.id)} key={index} movieDetailList={this.state.movieDetailList[item.id]} {...item}/>)
+                                this.state.searchSubjects.map((item, index)=> <span onMouseOver={()=>this.gethoverMovieInfo(item.id)} key={index} ><ImgTitleRateShowUnit movieDetailList={this.state.movieDetailList[item.id]} {...item}/></span>)
                             }
                         </div>
                         {/*点击加载更多*/}
@@ -224,7 +221,6 @@ class selectMovie extends Component {
             </div>
         )
     }
-
 }
 
 export default selectMovie

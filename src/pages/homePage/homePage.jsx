@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import ReactDom from 'react-dom'
 import axios from 'axios'
 
-import BacktoTop from '../../components/commons/backtoTop/backtoTop'
 import './homePage.css'
+import BacktoTop from '../../components/commons/backtoTop/backtoTop'
 import TopBar from '../../components/commons/topBar/topBar'
 import MovieNav from '../../components/commons/movieNav/movieNav'
 import TitleAndTypeChange from '../../components/homeCpns/titleAndTypeChange/titleAndTypeChange'
@@ -41,7 +41,6 @@ class homePage extends Component {
             // 排名区间
             // interval_id: '100%3A90',
             rankSection: 0,
-            //        let rankArr = ['95%', '90%', '85%', '80%', '75%', '70%', '65%', '60%', '55%', '50%', '45%', '40%', '35%', '30%', '25%', '20%', '15%', '10%', '5%', ]
             interval_id: ['100%3A90', '95%3A85', '90%3A80', '85%3A75', '80%3A70', '75%3A65', '70%3A60', '65%3A55', '60%3A50', '55%3A45', '50%3A40', '45%3A35',
                 '40%3A30', '35%3A25', '30%3A20', '25%3A15', '20%3A10', '15%3A5', '10%3A0'],
             action: '',
@@ -54,6 +53,7 @@ class homePage extends Component {
         this.bindScroll = this.bindScroll.bind(this)
         this.homePageRefs = React.createRef()
     }
+    // 处理排名区间改变
     async handlerankSectionChange() {
         let tempSect = this.state.rankSection
         let rankSection = ReactDom.findDOMNode(this.homePageRefs.current).options.selectedIndex
@@ -63,7 +63,6 @@ class homePage extends Component {
         await this.setState({rankSection, rankList: [], start: 0})
         this.getAbstractInfo()
         this.getMovieList()
-        // console.log(rankSection, this.state.rankSection,this.state.rankList, '2333333')
     }
     // 用户选择了其他类型的排行榜
     async handleTypeChange(item) {
@@ -100,19 +99,16 @@ class homePage extends Component {
         rankList.push(...res)
         await this.setState({rankList})
         this.setState({loading: false})
-        // console.log(this.state.rankList, '211111')
     }
 
     // 获取概述信息函数https://movie.douban.com/j/chart/top_list_count?type=11&interval_id=100%3A90
     async getAbstractInfo() {
         let {type, interval_id, rankSection} = this.state
         interval_id = interval_id[rankSection]
-        // let res = await axios.get('/api/j/chart/top_list?type=' + type + '&interval_id=' + interval_id + '&action=' + action+ '&start=' + start+ '&limit=' + limit, {withCredentials: true})
         let res = await axios.get('/api/j/chart/top_list_count?type=' + type + '&interval_id=' + interval_id)
         res = res.data
         let {playable_count, total, unwatched_count} = res
         this.setState({playable_count, total, unwatched_count})
-        // console.log(playable_count, total, unwatched_count, '211111')
     }
     // 监听页面滑动到底部触发获取下一页信息
     async bindScroll() {
@@ -126,7 +122,6 @@ class homePage extends Component {
             start += 20
             await this.setState({start})
             this.getMovieList()
-            // console.log('我距离底部还有', distance)
         }
     }
 
@@ -134,10 +129,10 @@ class homePage extends Component {
         // 挂载滚动监听
         window.addEventListener('scroll', this.bindScroll)
         // 获取第一次剧情片信息
-        // this.getMovieList()
+        this.getMovieList()
 
         // 获取概述信息函数https://movie.douban.com/j/chart/top_list_count?type=11&interval_id=100%3A90
-        // this.getAbstractInfo()
+        this.getAbstractInfo()
     }
     componentWillUnmount() {
         // 移除滚动监听

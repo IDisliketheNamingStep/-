@@ -7,18 +7,27 @@ class catListShow extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            // tags0选中标记
             tags0Active: 0,
+            // genres选中标记
             genresActive: 0,
+            // countries选中标记
             countriesActive: 0,
+            // year_range选中标记
             year_rangeActive: 0,
+            // tags1选中标记
             tags1Active: 0,
+            // 评分范围
             range: [0, 10],
+            // 是否只显示可播放标记
             playableOnly: false,
+            // 是否只显示未看过标记
             unwatchedOnly: false,
-            // https://movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=&start=0&year_range=1960,1969
-            // https://movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=电影,经典&start=0&genres=剧情&year_range=2019,2019
-            //https://movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=电影,励志&start=0&genres=剧情&countries=美国&year_range=2010,2019
-            //https://movie.douban.com/j/new_search_subjects?sort=R&range=0,1&tags=&playable=1&unwatched=1&start=0&year_range=1,1959
+            // 排序类型选中标志
+            sortActive: 0,
+            // 信息起始标志
+            start: 0,
+            // 以下为分类列表
             tags0: ['全部形式', '电影', '电视剧', '综艺', '动漫', '纪录片', '短片'],
             genres: ['全部类型', '剧情', '喜剧', '动作', '爱情', '科幻', '动画', '悬疑', '惊悚', '恐怖', '犯罪', '同性', '音乐', '歌舞', '传记', '历史', '战争', '西部', '奇幻', '冒险', '灾难', '武侠', '情色'],
             countries: ['全部地区', '中国大陆', '美国', '中国香港', '中国台湾', '日本', '韩国', '英国', '法国', '德国', '意大利', '西班牙', '印度', '泰国', '俄罗斯', '伊朗',
@@ -28,16 +37,12 @@ class catListShow extends Component {
                 {text: '70年代', year_range: '1970,1979'}, {text: '60年代', year_range: '1960,1969'}, {text: '更早', year_range: '1,1959'}],
             tags1:['全部特色', '经典', '青春', '文艺', '搞笑', '励志', '魔幻', '感人', '女性', '黑帮'],
             sortList: [{text:'近期热门',mark:'U'}, {text:'标记最多',mark:'T'}, {text:'评分最高',mark:'S'}, {text:'最新上映',mark:'R'}],
-            sortActive: 0,
-            start: 0
 
         }
         this.rangeRefs0 = React.createRef()
         this.rangeRefs1 = React.createRef()
     }
     //https://movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=电影,励志&start=0&genres=剧情&countries=美国&year_range=2010,2019
-    //playableOnly: false,
-    //             unwatchedOnly: false,
     async getMovieInfo() {
         let {start, tags0Active,tags0, genresActive,genres, countriesActive,countries, year_rangeActive,year_range, tags1Active,tags1, range, playableOnly, unwatchedOnly, sortActive, sortList} = this.state
         let tempTagArr = []
@@ -47,42 +52,44 @@ class catListShow extends Component {
         if(tags1Active !== 0) {
             tempTagArr.push(tags1[tags1Active])
         }
+        // 默认URL，未加任何选项
         let url = '/api/j/new_search_subjects?sort=' + sortList[sortActive].mark + '&range=' + range.join(',') + '&tags=' + tempTagArr.join(',') + '&start=' + start
-        // let url = '/api/j/new_search_subjects?sort=' + sortList[sortActive].mark + '&range=' + range + '&tags=' + tempTagArr.join(',') + '&start=' + start +
-        // '&genres=' + genres[genresActive] +
-        // '&countries=' + countries[countriesActive] +
-        // '&year_range=' + year_range[year_rangeActive].year_range
+        // 增加剧情选项搜索
         if(genresActive !== 0) {
             url = url + '&genres=' + genres[genresActive]
         }
+        // 增加地区限制搜索
         if (countriesActive !== 0) {
             url = url + '&countries=' + countries[countriesActive]
         }
+        // 增加年代条件搜索
         if (year_rangeActive !== 0) {
             url = url + '&year_range=' + year_range[year_rangeActive].year_range
         }
+        // 判断是否只显示可播放的
         if(playableOnly) {
             url += '&playable=1'
         }
+        // 判断是否只显示未看过的
         if(unwatchedOnly) {
             url += '&unwatched=1'
         }
         let res = await axios.get(url)
-        await this.props.handleResInfoFromCatListShow(res)
-        console.log(res.data, '2666666666666666666666');
-
+        // 将数据传给父组件保存
+        await this.props.handleResInfoFromCatListShow(res.data)
     }
+    // 改变标签选中标志，每次改变重新获取信息
     async handleKeyWordsChange(tagName, index) {
         tagName += 'Active'
-        console.log(index)
         await this.setState({[tagName]: index})
         this.getMovieInfo()
-        // console.log(this.state[tagName], '23333')
     }
+    // 改变排序类型，每次改变重新获取信息
     async handleSortTypeChange(index) {
         await this.setState({sortActive: index})
         this.getMovieInfo()
     }
+    // 改变评分范围，每次改变重新获取信息
     async handleRangeChange() {
         let {range} = this.state
         let temp0 = ReactDom.findDOMNode(this.rangeRefs0.current).options.selectedIndex
@@ -94,14 +101,24 @@ class catListShow extends Component {
         }
         await this.setState({range})
         this.getMovieInfo()
-        // console.log('233333333333333333', this.state.range)
     }
+    // 处理‘未看过’与‘可播放’选中及取消
     async handlePlayableChange(attrName) {
         await this.setState({[attrName]: !this.state[attrName]})
         this.getMovieInfo()
     }
-    componentDidMount() {
+    // 父组件点击了‘加载更多’会触发这个函数
+    async loadmore0() {
+        // 获取的起始信息自增
+        let start = this.state.start + 20
+        await this.setState({start})
         this.getMovieInfo()
+    }
+    async componentDidMount() {
+        // 组件一经挂在即获取信息
+        this.getMovieInfo()
+        // 组件一经挂载即向父组件传递本组件对象
+        await this.props.onRef(this)
     }
 
     render() {
