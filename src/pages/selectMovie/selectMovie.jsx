@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import { withRouter } from 'react-router-dom'
+
 import './selectMovie.css'
 import axios from 'axios'
 
@@ -16,7 +18,7 @@ class selectMovie extends Component {
             // 当前内容类型，默认为电影
             curContentType: 'movie',
             // 当前内容title
-            pageTitle: '选电影',
+            pageTitle: {'movie':'选电影','tv':'热门电视剧'},
             // 获取信息的起始序号
             page_start: 0,
             // 每次获取信息的数量
@@ -41,7 +43,7 @@ class selectMovie extends Component {
             recommend_groups: []
         }
         this.handleCurentTagsChange = this.handleCurentTagsChange.bind(this)
-        this.handleCurContentTypeChange = this.handleCurContentTypeChange.bind(this)
+        // this.handleCurContentTypeChange = this.handleCurContentTypeChange.bind(this)
         this.sortTypeRefs = React.createRef()
     }
 
@@ -51,7 +53,6 @@ class selectMovie extends Component {
         let selectTags = await axios.get('/api/j/search_tags?type=' + curContentType + '&source=')
         selectTags = selectTags.data.tags
         await this.setState({selectTags})
-        // console.log(selectTags, this.state.selectTags, '233')
     }
     // 获取推荐小组信息https://movie.douban.com/j/tv/recommend_groups?tag=%E7%83%AD%E9%97%A8
     async getRecommend_groupsInfo() {
@@ -62,7 +63,6 @@ class selectMovie extends Component {
         let recommend_groups = await axios.get('/api/j/tv/recommend_groups?tag=' + currentTag)
         recommend_groups = recommend_groups.data.groups
         await this.setState({recommend_groups})
-        console.log(recommend_groups, this.state.recommend_groups, '233')
     }
     // 获取hover电影详情信息https://movie.douban.com/j/subject_abstract?subject_id=26709258
     async gethoverMovieInfo(subject_id) {
@@ -141,30 +141,33 @@ class selectMovie extends Component {
         this.getMoviesListInfo()
     }
     // 处理子组件movieNav传出内容类型改变
-    async handleCurContentTypeChange(index) {
-        let {curContentType} = this.state
-        if (index === 1) {
-            if (curContentType === 'movie') {
-                return
-            }
-            await this.setState({curContentType: 'movie', pageTitle: '选电影', searchSubjects: [], page_start: 0})
-            await this.getSelectTagsInfo()
-            await this.setState({currentTag: this.state.selectTags[0]})
-            await this.getMoviesListInfo()
-        }
-        if (index === 2) {
-            if (curContentType === 'tv') {
-                return
-            }
-            await this.setState({curContentType: 'tv', pageTitle: '热门电视剧', searchSubjects: [], page_start: 0})
-            await this.getSelectTagsInfo()
-            await this.setState({currentTag: this.state.selectTags[0]})
-            await this.getMoviesListInfo()
-            this.getRecommend_groupsInfo()
-        }
-    }
+    // async handleCurContentTypeChange(index) {
+    //     let {curContentType} = this.state
+    //     if (index === 1) {
+    //         if (curContentType === 'movie') {
+    //             return
+    //         }
+    //         await this.setState({curContentType: 'movie', pageTitle: '选电影', searchSubjects: [], page_start: 0})
+    //         await this.getSelectTagsInfo()
+    //         await this.setState({currentTag: this.state.selectTags[0]})
+    //         await this.getMoviesListInfo()
+    //     }
+    //     if (index === 2) {
+    //         if (curContentType === 'tv') {
+    //             return
+    //         }
+    //         await this.setState({curContentType: 'tv', pageTitle: '热门电视剧', searchSubjects: [], page_start: 0})
+    //         await this.getSelectTagsInfo()
+    //         await this.setState({currentTag: this.state.selectTags[0]})
+    //         await this.getMoviesListInfo()
+    //         this.getRecommend_groupsInfo()
+    //     }
+    // }
 
-    componentDidMount() {
+    async componentDidMount() {
+        let curContentType = this.props.match.params.curContentType
+        // console.log(this.props.match.params.curContentType,'222222')
+        await this.setState({curContentType})
         // 获取标签数组https://movie.douban.com/j/search_tags?type=movie&source=
         this.getSelectTagsInfo()
         // 获取展示数据https://movie.douban.com/j/search_subjects?type=movie&tag=%E7%83%AD%E9%97%A8&sort=recommend&page_limit=20&page_start=0
@@ -178,10 +181,11 @@ class selectMovie extends Component {
             <div className="selectMovieContainer">
                 <TopBar />
                 <div className="homeNavContainer">
-                    <MovieNav handleCurContentTypeChange={this.handleCurContentTypeChange} />
+                    {/*<MovieNav handleCurContentTypeChange={this.handleCurContentTypeChange} />*/}
+                    <MovieNav />
                 </div>
                 <div className="selectMovieContent">
-                    <h1 className='pageTitle'>{this.state.pageTitle}</h1>
+                    <h1 className='pageTitle'>{this.state.pageTitle[this.state.curContentType]}</h1>
                     {/*左侧内容列*/}
                     <div className="selectMainContent fl">
                         {/*分类标签*/}
@@ -223,4 +227,4 @@ class selectMovie extends Component {
     }
 }
 
-export default selectMovie
+export default withRouter(selectMovie)

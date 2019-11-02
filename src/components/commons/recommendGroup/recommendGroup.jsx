@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import './recommendGroup.css'
-import index from "postcss-normalize";
 
 class recommendGroup extends Component {
     constructor(props) {
@@ -13,10 +12,6 @@ class recommendGroup extends Component {
         if(JSON.stringify(recommend_groups) === '[]') {
             return '广告位招租'
         }
-        //url: https://www.douban.com/group/202728/
-        // picture: https://img3.doubanio.com/view/group/sqxs/public/ce9cf903bd47971.webp
-        // name: "「米飯大好き」"
-        // n_member: 7514
         return (
             <div className="recommendGroupContainer fl">
                 <div className="recommendGroupContent">
@@ -30,7 +25,6 @@ class recommendGroup extends Component {
                                             <img src={item.picture} alt=""/>
                                         </a>
                                             <span>{item.name}<i>({item.n_member})</i></span>
-                                        {/*<span>{item.n_member}</span>*/}
                                     </li>
                                 )
                             })

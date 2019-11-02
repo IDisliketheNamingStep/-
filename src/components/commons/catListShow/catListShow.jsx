@@ -43,7 +43,7 @@ class catListShow extends Component {
         this.rangeRefs1 = React.createRef()
     }
     //https://movie.douban.com/j/new_search_subjects?sort=U&range=0,10&tags=电影,励志&start=0&genres=剧情&countries=美国&year_range=2010,2019
-    async getMovieInfo() {
+    async getMovieInfo(refresh) {
         let {start, tags0Active,tags0, genresActive,genres, countriesActive,countries, year_rangeActive,year_range, tags1Active,tags1, range, playableOnly, unwatchedOnly, sortActive, sortList} = this.state
         let tempTagArr = []
         if(tags0Active !== 0) {
@@ -76,7 +76,7 @@ class catListShow extends Component {
         }
         let res = await axios.get(url)
         // 将数据传给父组件保存
-        await this.props.handleResInfoFromCatListShow(res.data)
+        await this.props.handleResInfoFromCatListShow(res.data, refresh)
     }
     // 改变标签选中标志，每次改变重新获取信息
     async handleKeyWordsChange(tagName, index) {
@@ -112,7 +112,7 @@ class catListShow extends Component {
         // 获取的起始信息自增
         let start = this.state.start + 20
         await this.setState({start})
-        this.getMovieInfo()
+        this.getMovieInfo(false)
     }
     async componentDidMount() {
         // 组件一经挂在即获取信息

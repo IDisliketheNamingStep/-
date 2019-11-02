@@ -16,9 +16,13 @@ class categoryShow extends Component {
         this.onRef = this.onRef.bind(this)
     }
     // 接收子组件传出来的信息并保存
-    async handleResInfoFromCatListShow(searchSubject) {
+    async handleResInfoFromCatListShow(searchSubject,refresh) {
         let tempArr = this.state.searchSubject
-        searchSubject = [...tempArr, ...searchSubject.data]
+        if(refresh === false) {
+            searchSubject = [...tempArr, ...searchSubject.data]
+        } else {
+            searchSubject = searchSubject.data
+        }
         await this.setState({searchSubject})
     }
     // 点击了加载更多,触发子组件函数获取信息

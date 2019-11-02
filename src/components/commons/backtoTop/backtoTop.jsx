@@ -9,6 +9,7 @@ class backtoTop extends Component {
         }
         this.toTopShowMark = this.toTopShowMark.bind(this)
     }
+    // 回到顶部
     scrolltoTop() {
         let itimer = setInterval(()=> {
             document.documentElement.scrollTop -= 80
@@ -18,6 +19,7 @@ class backtoTop extends Component {
             }
         },0)
     }
+    // 展示回到顶部按键
     toTopShowMark() {
         let tempScroll = document.documentElement.scrollTop
         if((tempScroll > 800 && this.state.topButtonShowMark === true) || (tempScroll < 800 && this.state.topButtonShowMark === false)) {
