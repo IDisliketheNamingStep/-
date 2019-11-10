@@ -112,8 +112,14 @@ class homePage extends Component {
     }
     // 监听页面滑动到底部触发获取下一页信息
     async bindScroll() {
+        //变量scrollTop是滚动条滚动时，距离顶部的距离
+        let scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+        //变量windowHeight是可视区的高度
+        let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+        //变量scrollHeight是滚动条的总高度
+        let scrollHeight = document.documentElement.offsetHeight||document.documentElement.scrollHeight||document.body.scrollHeight;
         let {start, loading, minidistance} = this.state
-        let distance = document.documentElement.offsetHeight - document.documentElement.scrollTop - document.documentElement.clientHeight
+        let distance = scrollHeight - scrollTop - windowHeight - 600
         if(distance < minidistance) {
             if(loading) {
                 return
